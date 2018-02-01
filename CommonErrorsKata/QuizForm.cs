@@ -14,8 +14,8 @@ namespace CommonErrorsKata
         private readonly string[] files;
         private readonly SynchronizationContext synchronizationContext;
         private int i = 100;
-        private string currentBaseName = null;
-        private readonly string[] possibleAnswers = null;
+        private string currentBaseName;
+        private readonly string[] possibleAnswers;
 
         public CommonErrorsForm()
         {
@@ -45,6 +45,17 @@ namespace CommonErrorsKata
         private void LstAnswers_Click(object sender, EventArgs e)
         {
             i = 100;
+
+            var selected = possibleAnswers[(int) lstAnswers.SelectedItem];
+            if (selected != null && selected == (string) lstAnswers.SelectedItem)
+            {
+                answerQueue.Enqueue(new TrueFalseAnswer(true));
+            }
+            else
+            {
+                answerQueue.Enqueue(new TrueFalseAnswer(false));
+            }
+
             var tokens = currentBaseName.Split(' ');
             //TODO:  Figure out what is a valid answer.
             answerQueue.Enqueue(new TrueFalseAnswer(true));
