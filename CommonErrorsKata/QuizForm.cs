@@ -76,7 +76,10 @@ namespace CommonErrorsKata
         }
         public void Message(string value)
         {
-           if(value != null) _synchronizationContext.Post(x => { MessageBox.Show(value); }, value);
+            if (value != null)
+            {
+                _synchronizationContext.Post(x => { MessageBox.Show(value); }, value);
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
